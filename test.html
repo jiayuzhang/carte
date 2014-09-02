@@ -1,0 +1,40 @@
+---
+layout: default
+---
+
+<nav id='sidebar'>
+	{% include nav.html %}
+</nav>
+
+<section id='content'>
+{% for post in site.posts %}
+  <article class='{{ post.type }}'>
+    <a name='{{ post.url }}' href='#{{ post.url }}'><h2>{% if post.type %}<code><b>{{ post.type }}</b> {{ post.path }}</code> {% endif %}{{ post.title }}</h2></a>
+    <section class='body'>
+      {% for h in post.headers %}
+        <p>{{ h.key }} {{ h.val }}<p>
+      {% endfor %}
+
+      <hr>
+
+      <table>
+		{% tablerow item in post.required_params %}
+  			{{ item }}
+		{% endtablerow %}
+	  </table>
+
+	  <hr>
+
+	  <table>
+		{% tablerow item in post.optional_params %}
+  			{{ item }}
+		{% endtablerow %}
+	  </table>
+
+	  <hr>
+
+      {{ post.content }}
+    </section>
+  </article>
+{% endfor %}
+</section>
