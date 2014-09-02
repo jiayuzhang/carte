@@ -26,11 +26,8 @@ Parameters    | value
 Content Cell  | Content Cell
 Content Cell  | Content Cell
 
-#### 1. Response [* 200: ok *]
+#### Response [200: ok]
 > response detail response detail response detail response detail response detail response detail response detail response detail response detail 
-
-#### 2. Response [* 500: serve error *]
-> response detail response detail response detail response detail response detail response detail response detail response detail response detail
 
 
 

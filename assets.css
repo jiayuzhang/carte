@@ -512,10 +512,10 @@ code {
 /* References */
 #content {
   padding: 20px;
-  padding-left: 260px;
-  max-width: 500px;
-  width: 500px;
-  position: fixed;
+  padding-left: 260px;  
+  width: 750px;
+  /*position: fixed; */
+  float: left;
 }
 
 #content .control {
@@ -590,6 +590,7 @@ code {
 /* POST */
 #content article.POST a h2 code {
   color: #52ce0e;
+  padding-left: 0px;
 }
 
 #content article.POST a h2 code b {
@@ -644,5 +645,46 @@ code {
   width: 500px;
   float: right;
   height: 100%;
-  background-color: gray;
+  background-color: #e7f4fe;
 }
+
+.containter {
+  margin-top: 70px;
+  margin-left: 10px;
+}
+
+#post-content{
+  font: 13px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;
+  color: #555;
+}
+
+#post-content p{
+  font-size : 14px;
+}
+
+#post-content table{
+  border-collapse: collapse !important;
+  border: 1px solid #ddd !important;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+#post-content table td, #post-content table th{
+   background-color: #fff !important;
+}
+
+
+#post-content table > thead > tr > th,
+#post-content table > tbody > tr > th,
+#post-content table > tfoot > tr > th,
+#post-content table > thead > tr > td,
+#post-content table > tbody > tr > td,
+#post-content table > tfoot > tr > td {
+  border: 1px solid #ddd !important;
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+}
+

@@ -11,12 +11,12 @@ layout: default
   <article class='{{ post.type }}'>
     <a name='{{ post.url }}' href='#{{ post.url }}'><h2>{% if post.type %}<code><b>{{ post.type }}</b> {{ post.path }}</code> {% endif %}{{ post.title }}</h2></a>
     <section class='body'>
-      {% for h in post.headers %}
+<!--      {% for h in post.headers %}
         <p>{{ h.key }} {{ h.val }}<p>
       {% endfor %}
-      <hr>
-
-      <table>
+-->
+<!--
+    <table>
     {% tablerow item in post.required_params %}
         {{ item }}
     {% endtablerow %}
@@ -29,23 +29,54 @@ layout: default
         {{ item }}
     {% endtablerow %}
     </table>
+-->
+    <button class="btn-open btn btn-default" id="{{post.bid}}">Open this API</button>
     <hr>
-     <button class="btn" id="{{post.bid}}">Open this API</button>
-    <hr>
+    <div id="post-content">
       {{ post.content }}
+    </div>
     </section>
   </article>
+  <script> 
+        window.{{post.bid}} = {'category' : '{{post.category}}','path': '{{post.path}}', 'title': '{{post.title}}', 'type': '{{post.type}}' } ;
+        window.{{post.bid}}.headers = [];
+    {% for h in post.headers %}
+        window.{{post.bid}}.headers.push({ '{{h.key}}' : '{{h.val}}'});
+    {% endfor %}
+        window.{{post.bid}}.required_params = [];
+        window.{{post.bid}}.optional_params = [];
+    {% for r in post.required_params %}
+        window.{{post.bid}}.required_params.push('{{r}}');
+    {% endfor %}
+    {% for r in post.optional_params %}
+        window.{{post.bid}}.optional_params.push('{{r}}');
+    {% endfor %}
+
+  </script>
 {% endfor %}
 </section>
 <section id="excute">
 
 </section>
-  <script type='text/javascript'>
-    var {{post.bid}} = {} ;
+<script>
     $(document).ready(function(){
-      $('.btn').click(function(e){
+      $('.btn-open').click(function(e){
           var id = $(this).attr('id');
-          console.log(id);
+          console.log(window[id]);
+          var path = window[id].path;
+          var type = window[id].type;
+          var content = "<div class='containter'><h2>"+type+" "+ path+"</h2></br>";
+          $.each(window[id].required_params, function(i,val){
+              content = content + "<label>" + val + "</label>" + "<input type='text' class='request_param' data-key='"+val+"' /> <hr>";
+          });
+          content = content + "<button class='btn-submit btn btn-default submit'>Submit</button>";
+          content = content + "</div>"
+          $('#excute').html(content);
+
+      });
+
+      $(document).on('click', '.btn-submit', function(){
+          console.log("enter");
       });
     });
   </script>
