@@ -11,6 +11,7 @@ headers:
     val: application/x-www-form-urlencoded
 required_params: [aa,bb,cc]
 optional_params: [dd,ee]
+bid: test1
 ---
 
 Test for test only

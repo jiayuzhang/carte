@@ -3,7 +3,7 @@ layout: default
 ---
 
 <nav id='sidebar'>
-	{% include nav.html %}
+  {% include nav.html %}
 </nav>
 
 <section id='content'>
@@ -11,8 +11,42 @@ layout: default
   <article class='{{ post.type }}'>
     <a name='{{ post.url }}' href='#{{ post.url }}'><h2>{% if post.type %}<code><b>{{ post.type }}</b> {{ post.path }}</code> {% endif %}{{ post.title }}</h2></a>
     <section class='body'>
+      {% for h in post.headers %}
+        <p>{{ h.key }} {{ h.val }}<p>
+      {% endfor %}
+      <hr>
+
+      <table>
+    {% tablerow item in post.required_params %}
+        {{ item }}
+    {% endtablerow %}
+    </table>
+
+    <hr>
+
+    <table>
+    {% tablerow item in post.optional_params %}
+        {{ item }}
+    {% endtablerow %}
+    </table>
+    <hr>
+     <button class="btn" id="{{post.bid}}">Open this API</button>
+    <hr>
       {{ post.content }}
     </section>
   </article>
 {% endfor %}
 </section>
+<section id="excute">
+
+</section>
+  <script type='text/javascript'>
+    var {{post.bid}} = {} ;
+    $(document).ready(function(){
+      $('.btn').click(function(e){
+          var id = $(this).attr('id');
+          console.log(id);
+      });
+    });
+  </script>
+
